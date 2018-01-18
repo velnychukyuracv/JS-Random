@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Random</title>
+</head>
+
+
+<body>
+
+<style>
+        body{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        #howMuch{
+            width: 200px;
+            height: 30px;
+            text-align: center;
+            border-radius: 15px;
+            outline: none;
+            background-color: #f6f6f6;
+            font-size: 18px;
+        }
+        #btn{
+            margin: 20px;
+            text-transform: uppercase;
+            font-weight: bold;
+            padding: 5px 20px;
+            border-radius: 20px;
+            color: #fff;
+            background-color: #e22092;
+            font-size: 18px;
+            outline: none;
+        }
+        #btn:hover{
+            background-color: #fc20ab;
+        }
+
+        p{
+            font-size: 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin: 10px;
+        }
+</style>
+
+      <h1>ВВЕДІТЬ ЧИСЛО</h1>
+      <input type="text" id="howMuch"/>
+      <input type="button" id="btn" value="формувати">
+
+<script>
+
+    function workFunc(){
+
+        //заголовок
+        var newTitle=document.createElement('h2');
+        newTitle.innerHTML="масив рандомних чисел";
+        document.body.appendChild(newTitle);
+        newTitle.style.textTransform="uppercase";
+
+        //блок обгортки для массиву
+        var newDivWrapper=document.createElement('div');
+        document.body.appendChild(newDivWrapper);
+        newDivWrapper.style.border="1px solid #000";
+        newDivWrapper.style.width="80%";
+        newDivWrapper.style.display="flex";
+        newDivWrapper.style.flexWrap="wrap";
+        newDivWrapper.style.justifyContent="center";
+
+        //створення рандомної функціїї
+        function getRandomInt(min, max) {
+            return Math.floor(Math.random() * (max - min)) + min;
+        };
+
+        //створення масиву з введеним числом елементів та запис до нього рандомних чисел з допомогою рандомної функціїї
+        var howMuchNumber=+document.getElementById("howMuch").value,
+            arr = new Array(howMuchNumber);
+
+        for(var i=0; i<arr.length; i++) {
+            arr[i]=(getRandomInt(1, 1000));
+        };
+
+        //виведення на екран масиву  (кожен елемент массиву виводиться як окремий 'р')
+        for(var i=0; i<arr.length; i++){
+            var newP=document.createElement('p');
+            newP.innerHTML=arr[i];
+            newDivWrapper.appendChild(newP);
+        };
+
+        //найбільший елемент масиву
+        var maxInArr=document.createElement('p'),
+                max = Math.max.apply(null, arr);
+        maxInArr.innerHTML="Найбільше число в масиві = " + max;
+        document.body.appendChild(maxInArr);
+        //індекс найбільшого елемента в массиві
+        for(var i=0; i<arr.length; i++){
+            if (arr[i] != Math.max.apply(null, arr)) {
+            } else {
+                console.log(i+1 + " - position max");
+             }
+        };
+
+        //найменший елемент масиву
+        var minInArr=document.createElement('p');
+        min = Math.min.apply(null, arr);
+        minInArr.innerHTML="Найменше число в масиві = " + min;
+        document.body.appendChild(minInArr);
+        //індекс найменшого елемента в массиві
+        for(var i=0; i<arr.length; i++){
+            if (arr[i]== Math.min.apply(null, arr)){
+                console.log(i+1 + " - position min");
+            }
+        };
+
+        //сортування массиву по зростанню
+        arr.sort(function(a,b){return a-b;});
+        console.log(arr.join());
+
+
+
+    }
+
+
+    document.getElementById("btn").onclick = workFunc;
+
+
+</script>
+
+
+
+</body>
+</html>
