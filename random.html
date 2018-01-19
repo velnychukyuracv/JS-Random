@@ -37,9 +37,15 @@
             outline: none;
         }
         #btn:hover{
-            background-color: #fc20ab;
+            background-color: #ff20ae;
         }
-
+        .arrWrapper{
+            display: flex;
+            border: 1px solid #000;
+            width: 80%;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
         p{
             font-size: 20px;
             font-weight: bold;
@@ -49,7 +55,7 @@
 </style>
 
       <h1>ВВЕДІТЬ ЧИСЛО</h1>
-      <input type="text" id="howMuch"/>
+      <input type="number" id="howMuch"/>
       <input type="button" id="btn" value="формувати">
 
 <script>
@@ -65,14 +71,11 @@
         //блок обгортки для массиву
         var newDivWrapper=document.createElement('div');
         document.body.appendChild(newDivWrapper);
-        newDivWrapper.style.border="1px solid #000";
-        newDivWrapper.style.width="80%";
-        newDivWrapper.style.display="flex";
-        newDivWrapper.style.flexWrap="wrap";
-        newDivWrapper.style.justifyContent="center";
+        newDivWrapper.className="arrWrapper";
+
 
         //створення рандомної функціїї
-        function getRandomInt(min, max) {
+        function getRandom(min, max) {
             return Math.floor(Math.random() * (max - min)) + min;
         };
 
@@ -81,14 +84,14 @@
             arr = new Array(howMuchNumber);
 
         for(var i=0; i<arr.length; i++) {
-            arr[i]=(getRandomInt(1, 1000));
+            arr[i]=(getRandom(1, 1000));
         };
 
         //виведення на екран масиву  (кожен елемент массиву виводиться як окремий 'р')
         for(var i=0; i<arr.length; i++){
-            var newP=document.createElement('p');
-            newP.innerHTML=arr[i];
-            newDivWrapper.appendChild(newP);
+            var arrP=document.createElement('p');
+            arrP.innerHTML=arr[i];
+            newDivWrapper.appendChild(arrP);
         };
 
         //найбільший елемент масиву
@@ -120,13 +123,9 @@
         arr.sort(function(a,b){return a-b;});
         console.log(arr.join());
 
-
-
     }
 
-
     document.getElementById("btn").onclick = workFunc;
-
 
 </script>
 
